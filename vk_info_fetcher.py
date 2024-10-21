@@ -1,11 +1,17 @@
 import os
-
 import requests
 import json
 import argparse
 
-
 def get_user_info(user_id, token):
+    """
+    Получает информацию о пользователе ВКонтакте.
+
+    :param user_id: Идентификатор пользователя ВК (строка или число).
+    :param token: Токен доступа к VK API (строка).
+    :return: Ответ API в формате JSON, содержащий информацию о пользователе,
+             включая количество фолловеров и подписок.
+    """
     params = {
         'user_ids': user_id,
         'access_token': token,
@@ -17,6 +23,13 @@ def get_user_info(user_id, token):
 
 
 def get_followers(user_id, token):
+    """
+    Получает список фолловеров пользователя ВКонтакте.
+
+    :param user_id: Идентификатор пользователя ВК (строка или число).
+    :param token: Токен доступа к VK API (строка).
+    :return: Ответ API в формате JSON, содержащий информацию о фолловерах пользователя.
+    """
     params = {
         'user_id': user_id,
         'access_token': token,
@@ -27,6 +40,13 @@ def get_followers(user_id, token):
 
 
 def get_subscriptions(user_id, token):
+    """
+    Получает список подписок пользователя ВКонтакте.
+
+    :param user_id: Идентификатор пользователя ВК (строка или число).
+    :param token: Токен доступа к VK API (строка).
+    :return: Ответ API в формате JSON, содержащий информацию о подписках пользователя.
+    """
     params = {
         'user_id': user_id,
         'access_token': token,
@@ -37,6 +57,13 @@ def get_subscriptions(user_id, token):
 
 
 def get_groups(user_id, token):
+    """
+    Получает список групп, в которых состоит пользователь ВКонтакте.
+
+    :param user_id: Идентификатор пользователя ВК (строка или число).
+    :param token: Токен доступа к VK API (строка).
+    :return: Ответ API в формате JSON, содержащий информацию о группах пользователя.
+    """
     params = {
         'user_id': user_id,
         'access_token': token,
@@ -47,9 +74,14 @@ def get_groups(user_id, token):
 
 
 def save_to_json(data, filename):
+    """
+    Сохраняет данные в JSON-файл.
+
+    :param data: Данные для сохранения (объект).
+    :param filename: Путь к файлу для сохранения (строка).
+    """
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VK User Info Fetcher")
